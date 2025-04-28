@@ -52,8 +52,18 @@ public class Main {
     static double deposit(double balance) {
         Scanner scanner = new Scanner(System.in);
         double deposit;
-        System.out.printf("Enter the amount you would like to deposit: ");
-        deposit = scanner.nextDouble();
+        do {
+            System.out.printf("Enter the amount you would like to deposit: ");
+            deposit = scanner.nextDouble();
+
+            if (deposit < 0) {
+                System.out.println("You are not allowed to deposit a negative number");
+            }
+            else if (deposit > 1000000) {
+                System.out.println("You are not allowed to deposit more then 1 million.");
+            }
+
+        } while (deposit < 0 || deposit > 1000000);
         balance += deposit;
         System.out.printf("You have deposited %.2f euro's. Your total balance is now %.2f euro's\n\n", deposit, balance);
         return balance;
@@ -62,8 +72,19 @@ public class Main {
     static double withdraw(double balance) {
         Scanner scanner = new Scanner(System.in);
         double withdraw;
-        System.out.printf("Enter the amount you would like to withdraw: ");
-        withdraw = scanner.nextDouble();
+        do {
+            System.out.printf("Enter the amount you would like to withdraw: ");
+            withdraw = scanner.nextDouble();
+
+            if (withdraw > balance) {
+                System.out.println("Insufficient balance. Please try again.");
+            }
+
+            else if (withdraw < 0) {
+                System.out.println("You cannot withdraw a negative number.");
+            }
+
+        } while (withdraw > balance || withdraw < 0);
         balance -= withdraw;
         System.out.printf("You have withdrawed %.2f euro's. Your total balance is now %.2f euro's\n\n", withdraw, balance);
         return balance;
