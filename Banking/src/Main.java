@@ -29,17 +29,20 @@ public class Main {
         } while (!password.equals(correctpass));
 
         do {
-            System.out.println("What option would you like to do?");
-            System.out.println("1. Deposit money");
-            System.out.println("2. Withdraw money");
-            System.out.println("3. Check balance");
-            option = scanner.nextInt();
+            do {
+                System.out.println("What option would you like to do?");
+                System.out.println("1. Deposit money");
+                System.out.println("2. Withdraw money");
+                System.out.println("3. Check balance");
+                option = scanner.nextInt();
 
-            switch (option) {
-                case 1 -> balance = deposit(balance);
-                case 2 -> balance = withdraw(balance);
-                case 3 -> check(balance);
-            }
+                switch (option) {
+                    case 1 -> balance = deposit(balance);
+                    case 2 -> balance = withdraw(balance);
+                    case 3 -> check(balance);
+                    default -> System.out.println("Not a valid option. Please try again.");
+                }
+            } while (option > 3 || option < 1);
 
             scanner.nextLine();
             System.out.printf("Would you like to continue? (Y/N): ");
